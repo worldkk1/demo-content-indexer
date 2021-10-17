@@ -35,8 +35,8 @@ const Search: React.FC = () => {
   const search = (searchValue: string) => {
     let endpoint = 'https://www.googleapis.com'
     endpoint = 'http://localhost:8081'
-    const key = 'AIzaSyA9O93HFw2BKzxxqr2wiVrTYjjIjBhmf-0'
-    const cx = '07c51fae40d103fd7'
+    const key = process.env.REACT_APP_CSE_KEY
+    const cx = process.env.REACT_APP_CSE_ID
     const q = searchValue
     const url = `${endpoint}/customsearch/v1?key=${key}&cx=${cx}&q=${q}`
     fetch(url).then(res => res.json())
