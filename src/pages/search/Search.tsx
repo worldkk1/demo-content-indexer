@@ -9,6 +9,8 @@ import ListItem from '@mui/material/ListItem';
 import ResultCard from './components/ResultCard'
 import Logo from '../../components/Logo'
 import SearchInput from '../../components/SearchInput'
+import LoadingCard from './components/LoadingCard'
+import LockedCurtain from './components/LockedCurtain'
 
 interface ResultItem {
   cacheId: string
@@ -40,7 +42,11 @@ const Search: React.FC = () => {
     fetch(url).then(res => res.json())
       .then(res => {
         const { items } = res
-        setSearchResults(items)
+        let results = items
+        if (items.length > 3) {
+          results = items.slice(0, 3)
+        }
+        setSearchResults(results)
       })
   }
 
@@ -91,6 +97,16 @@ const Search: React.FC = () => {
             </ListItem>
           ))}
         </List>
+        <Box position="relative">
+          <List sx={{ width: '100%', maxWidth: 652 }}>
+            {[3, 4, 5].map(item => (
+              <ListItem key={item} alignItems="flex-start">
+                <LoadingCard />
+              </ListItem>
+            ))}
+          </List>
+          <LockedCurtain />
+        </Box>
       </Container>
     </Box>
   )
