@@ -20,7 +20,10 @@ const LockedCurtain: React.FC = () => {
           maxWidth: 652,
           boxShadow: 'unset',
           backdropFilter: "blur(3px)",
-          backgroundColor:'rgba(0, 0, 30, 0.4)'
+          backgroundColor:'rgba(0, 0, 30, 0.4)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         <Card>
