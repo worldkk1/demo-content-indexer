@@ -56,6 +56,10 @@ const Search: React.FC = () => {
     }
   }
 
+  const handleBackHome = () => {
+    history.push('/')
+  }
+
   useEffect(() => {
     if (searchParam) {
       search(searchParam)
@@ -80,7 +84,7 @@ const Search: React.FC = () => {
               mr: "32px"
             }}
           >
-            <Logo />
+            <Logo onClick={handleBackHome} />
           </Box>
           <SearchInput initialValue={searchParam} onSearch={handleSearch} />
         </Toolbar>
