@@ -26,7 +26,7 @@ const LockedCurtain: React.FC = () => {
         <Card>
           <CardContent>
             <Typography variant="h5" component="div">
-              This contents is locked
+              This content is locked
             </Typography>
           </CardContent>
           <CardActions>
