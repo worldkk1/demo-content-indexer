@@ -15,6 +15,7 @@ const Home: React.FC = () => {
 
   return (
     <Container
+      maxWidth={false}
       sx={{
         position: 'absolute',
         top: 0,
