@@ -34,7 +34,7 @@ const Search: React.FC = () => {
   const [searchResults, setSearchResults] = useState<ResultItem[]>([])
   const search = (searchValue: string) => {
     let endpoint = 'https://www.googleapis.com'
-    endpoint = 'http://localhost:8081'
+    // endpoint = 'http://localhost:8081'
     const key = process.env.REACT_APP_CSE_KEY
     const cx = process.env.REACT_APP_CSE_ID
     const q = searchValue
@@ -89,29 +89,31 @@ const Search: React.FC = () => {
           <SearchInput initialValue={searchParam} onSearch={handleSearch} />
         </Toolbar>
       </AppBar>
-      <Container maxWidth="md">
-        <List sx={{ width: '100%', maxWidth: 652 }}>
-          {searchResults.map((result, index) => (
-            <ListItem key={index} alignItems="flex-start">
-              <ResultCard
-                link={result.link}
-                title={result.title}
-                snippet={result.snippet}
-              />
-            </ListItem>
-          ))}
-        </List>
-        <Box position="relative">
+      {(searchResults && searchResults.length > 0) &&
+        <Container maxWidth="md">
           <List sx={{ width: '100%', maxWidth: 652 }}>
-            {[3, 4, 5].map(item => (
-              <ListItem key={item} alignItems="flex-start">
-                <LoadingCard />
+            {searchResults.map((result, index) => (
+              <ListItem key={index} alignItems="flex-start">
+                <ResultCard
+                  link={result.link}
+                  title={result.title}
+                  snippet={result.snippet}
+                />
               </ListItem>
             ))}
           </List>
-          <LockedCurtain />
-        </Box>
-      </Container>
+          <Box position="relative">
+            <List sx={{ width: '100%', maxWidth: 652 }}>
+              {[3, 4, 5].map(item => (
+                <ListItem key={item} alignItems="flex-start">
+                  <LoadingCard />
+                </ListItem>
+              ))}
+            </List>
+            <LockedCurtain />
+          </Box>
+        </Container>
+      }
     </Box>
   )
 }
